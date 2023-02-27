@@ -1,7 +1,8 @@
-# Übungsblatt 1: Ausgabe: Bildschirm und Lautsprecher
+# Übungsblatt 1: Ausgabe auf Geräten
 
 ## Lernziele1. Kennenlernen der Entwicklungsumgebung
-2. Einarbeiten in die Programmiersprache C++ bzw. Rust3. Hardwarenahe Programmierung (CGA-Bildschirm und PC-Lautsprecher)## 1. Aufgabe: CGA-BildschirmFür Testausgaben und zur Erle ichterung der Fehlersuche soll das Betriebssystem zunächst Ausgabefunktionen für den Textbildschirm erhalten. Die Funktionsfähigkeit soll mit Hilfe eines aussagefähigen Testprogramms gezeigt werden, siehe Bildschirmfoto unten.
+2. Einarbeiten in die Programmiersprache C++ 
+3. Hardwarenahe Programmierung (CGA-Bildschirm und PC-Lautsprecher)## 1. Aufgabe: CGA-BildschirmFür Testausgaben und zur Erle ichterung der Fehlersuche soll das Betriebssystem zunächst Ausgabefunktionen für den Textbildschirm erhalten. Die Funktionsfähigkeit soll mit Hilfe eines aussagefähigen Testprogramms gezeigt werden, siehe Bildschirmfoto unten.
 Dazu soll in main.cc in der Einstiegsfunktion main das Objekt kout für verschieden formatierte Ausgaben genutzt werden. Diese sollen ähnlich wie bei der C++ IO-Streams Bibliothek verwendet werden können. Damit die Ausgabefunktionen überall in HHUos genutzt werden kann, ist in der gegebenen Klasse Gobals, ein globales CGA_Stream-Objekt kout bereits definiert.
 In folgenden Dateien müssen Quelltexte einfügt werden:
 `main.cc`, `user/aufgabe1/TextDemo.cc` und `devices/CGA.cc`
