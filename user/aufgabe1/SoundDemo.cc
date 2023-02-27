@@ -11,10 +11,7 @@
 #include "kernel/Globals.h"
 
 void sound_demo() {
-   kout << "Test des PC-Lautsprechers: ";
-   kout << "playing tetris ..." << endl;
-   pcspk.tetris ();
- 
-   kout << "playing aerodynamic ..." << endl;
-   pcspk.aerodynamic ();
+
+   /* Hier muss Code eingefuegt werden */
+
 }
