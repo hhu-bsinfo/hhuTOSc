@@ -16,5 +16,7 @@ Weitere Informationen zum PIT 8254 finden Sie hier: http://wiki.osdev.org/Progra
 In folgenden Dateien müssen Quelltexte einfügt werden:
 `devices/PCSPK.cc` und `user/SoundDemo.cc`
 
+### Bildschirmfoto zu Aufgabe 1
+
 ![CGA](https://github.com/mschoett/hhuTOSc/blob/aufgabe-1/cga.jpg?raw=true)
 
