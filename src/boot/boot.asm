@@ -40,12 +40,17 @@ pagetable_end:  equ 0x200000      ;  = 2 MB
 ;   System
 ;
 
+
+; Der Label [GLOBAL _ZdlPv] steht fuer das 'delete', welches jetzt 
+; implementiert ; wird. Damit der Linker nicht wegen doppelter 
+; Definition "meckert" nun auskommentieren!
+
 ; Von uns bereitgestellte Funktionen
 [GLOBAL startup]
 [GLOBAL idt]
 [GLOBAL __cxa_pure_virtual]
 [GLOBAL _ZdlPv]
-[GLOBAL _ZdlPvj]
+;[GLOBAL _ZdlPvj]
 [GLOBAL _ZdlPvm]
 
 ; C-Funktion die am Ende des Assembler-Codes aufgerufen werden
