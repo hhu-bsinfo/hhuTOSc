@@ -35,7 +35,7 @@ In dieser Aufgabe muss die Methode `PCPSK::delay` implementiert werden. Diese Me
 In folgenden Dateien müssen Quelltexte einfügt werden: `devices/PCSPK.cc` und`user/aufgabe2/SoundDemo.cc`.
 
 
-## Beispielausgaben
+## Beispielausgaben zur Speicherverwaltung
 Nachstehend sind einige Screenshots zum Testen der Speicherverwaltung. Sie können sich natürlich selbst Testfunktionen und Testausgaben überlegen. Sollten die Ausgaben über mehrere Seiten gehen bietet es sich an eine Zeitverzögerung mit `pcspk.delay` zu realsieren. Dies ist umständlich und nur als vorübergehende Lösung gedacht; später können wir Tastatureingaben verarbeiten ...
 
 ![Heap1](https://github.com/mschoett/hhuTOSc/blob/aufgabe-2/img/heap1.jpg)
