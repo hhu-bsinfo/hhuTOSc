@@ -11,7 +11,8 @@
 #include "kernel/Globals.h"
 
 
-CPU             cpu; 
+CPU             cpu;        // CPU-spezifische Funktionen
 PCSPK           pcspk;      // PC-Lautsprecher
 CGA_Stream      kout;       // Ausgabe-Strom fuer Kernel
+Keyboard        kb;         // Tastatur
 
