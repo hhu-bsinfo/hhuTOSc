@@ -11,9 +11,17 @@
  *****************************************************************************/
 
 #include "kernel/Globals.h"
-#include "user/TextDemo.h"
-#include "user/SoundDemo.h"
+#include "user/aufgabe1/TextDemo.h"
+#include "user/aufgabe1/SoundDemo.h"
 
+
+void aufgabe01() { 
+   // Bildschirmausgabe testen
+   text_demo();
+    
+   // Tastatur testen
+   keyboard_demo();
+}
 
 int main() {
     /* Hier muess Code eingefuegt werden */
@@ -22,9 +30,7 @@ int main() {
     
     // Startmeldung ausgeben
 
-    text_demo();
-    
-    sound_demo();
+    aufgabe01();
 
     while (1);
     return 0;
