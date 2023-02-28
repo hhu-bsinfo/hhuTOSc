@@ -5,9 +5,9 @@
 3. Hardwarenahe Programmierung: CGA-Bildschirm und Tastatur## A1.1: CGA-BildschirmFür Testausgaben und zur Erle ichterung der Fehlersuche soll das Betriebssystem zunächst Ausgabefunktionen für den Textbildschirm erhalten. Die Funktionsfähigkeit soll mit Hilfe eines aussagefähigen Testprogramms gezeigt werden, siehe Bildschirmfoto unten.
 Dazu soll in main.cc in der Einstiegsfunktion main das Objekt kout für verschieden formatierte Ausgaben genutzt werden. Diese sollen ähnlich wie bei der C++ IO-Streams Bibliothek verwendet werden können. Damit die Ausgabefunktionen überall in HHUos genutzt werden kann, ist in der gegebenen Klasse Gobals, ein globales CGA_Stream-Objekt kout bereits definiert.
 In folgenden Dateien müssen Quelltexte einfügt werden:
-`main.cc`, `user/aufgabe1/TextDemo.cc` und `devices/CGA.cc`
+`main.cc`, `devices/CGA.cc` und `user/aufgabe1/TextDemo.cc`.
 
-*Beachten Sie die Kommentare im Quelltext der Vorgabe, sowie die Datei* `HinweiseCGA.pdf`
+*Beachten Sie die Kommentare im Quelltext der Vorgabe, sowie die Datei* `CGA.pdf`
 
 ### Beispielausgaben
 
@@ -33,8 +33,9 @@ Namen von benötigten Variablen und Konstanten:
 
 Die Befehle für die Implementierung von `set_led` finden Sie in `Keyboard.h`. Warten und prüfen Sie nach dem Absenden eines Befehls die Antwort auf `kbd_reply::ack`. 
 
-In folgenden Dateien müssen Quelltexte einfügt werden: `user/KeyboardDemo.cc` und
-`devices/Keyboard.cc`
+In folgenden Dateien müssen Quelltexte einfügt werden: `devices/Keyboard.cc` und `user/aufgabe1/KeyboardDemo.cc`.
 
 *Achtung:
-Die Methoden zur Ansteuerung der LEDs und der Tastaturwiederholrate funktionieren nur richtig auf echter Hardware. Beachten Sie die Kommentare im Quelltext der Vorgabe, sowie die Datei* `HinweiseTastatur.pdf`.
+Die Methoden zur Ansteuerung der LEDs und der Tastaturwiederholrate funktionieren nur richtig auf echter Hardware.*
+
+*Beachten Sie die Kommentare im Quelltext der Vorgabe, sowie die Dateien* `Tastatur.pdf` *und* `HinweiseTastatur.pdf`.
