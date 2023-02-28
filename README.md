@@ -31,7 +31,10 @@ Die folgenden Hinweise sind Ergänzungen zu denen in Aufgabe A2.1!
 ## Beispielausgaben
 Nachstehend sind einige Screenshots zum Testen der Speicherverwaltung. Sie können sich natürlich selbst Testfunktionen und Testausgaben überlegen. Sollten die Ausgaben über mehrere Seiten gehen bietet es sich an eine Zeitverzögerung mit `pcspk.delay` zu realsieren. Dies ist umständlich und nur als vorübergehende Lösung gedacht; später können wir Tastatureingaben verarbeiten ...
 
-![List-Allocator](https://github.com/mschoett/hhuTOSc/blob/aufgabe-2/img/heap1.jpg)
-![List-Allocator](https://github.com/mschoett/hhuTOSc/blob/aufgabe-2/img/heap2.jpg)
-![List-Allocator](https://github.com/mschoett/hhuTOSc/blob/aufgabe-2/img/heap3.jpg)
-![List-Allocator](https://github.com/mschoett/hhuTOSc/blob/aufgabe-2/img/heap4.jpg)
+![Heap1](https://github.com/mschoett/hhuTOSc/blob/aufgabe-2/img/heap1.jpg)
+
+![Heap2](https://github.com/mschoett/hhuTOSc/blob/aufgabe-2/img/heap2.jpg)
+
+![Heap3](https://github.com/mschoett/hhuTOSc/blob/aufgabe-2/img/heap3.jpg)
+
+![Heap4](https://github.com/mschoett/hhuTOSc/blob/aufgabe-2/img/heap4.jpg)
