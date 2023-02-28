@@ -30,7 +30,7 @@ Die folgenden Hinweise sind Ergänzungen zu denen in Aufgabe A2.1!
 
 ## A2.3: PC-Lautsprecher
 In dieser Aufgabe muss die Methode `PCPSK::delay` implementiert werden. Diese Methode ist für das Abspielen von Tönen notwendig, die eine gegebene Zeitdauer gespielt werden sollen. Da wir bisher keine Interrupts verarbeiten können und auch keine Systemzeit haben bietet es sich an den Zähler 0 des Programmable Interval Timer (PIT) hierfür zu verwenden. Sie können dann in einer Schleife fortlaufend den aktuellen Zählerstand auslesen, der ja mit 1,19 MHz dekrementiert wirdund so näherungsweise die Ausführung, eine gegebene Zeit in Millisekunden, verzögern. Dies ist eine unsaubere Lösung die wir später ersetzen werden.
-Hinweis: gute Informationen zum PIT 8254 finden Sie hier:http://wiki.osdev.org/Programmable_Interval_Timer
+Hinweis: gute Informationen zum PIT 8254 finden Sie in der Datei `8254.pdf` sowie hier:http://wiki.osdev.org/Programmable_Interval_Timer
 
 In folgenden Dateien müssen Quelltexte einfügt werden: `devices/PCSPK.cc` und`user/aufgabe2/SoundDemo.cc`.
 
