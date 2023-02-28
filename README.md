@@ -19,5 +19,5 @@ In folgenden Dateien müssen Quelltexte einfügt werden:
 
 ### Bildschirmfoto zu Aufgabe 1
 
-![CGA](https://github.com/mschoett/hhuTOSc/blob/aufgabe-1/cga.jpg?raw=true)
+![CGA](https://github.com/mschoett/hhuTOSc/blob/aufgabe-1/img/cga.jpg)
 
