@@ -2,9 +2,9 @@
 
 ## Lernziele
 
-1. Funktionsweise des Interrupt-Controllers
-2. Behandlung von Interrupts
-3. Kritische Abschnitte (Synchronisierung)
+1. Funktionsweise des Interrupt-Controllers verstehen
+2. Behandlung von Interrupts implementieren, am Beispiel der Tastatur
+3. Kritische Abschnitte (Synchronisierung) verstehen und einsetzen
 ## A3.1: Programmable Interrupt Controller (PIC)
 In dieser Aufgabe soll die Interrupt-Verarbeitung aktiviert und anhand der Tastatur geprüft werden. Zunächst muss der PIC programmiert werden, um den Interrupt für die Tastatur zuzulassen. Zudem muss der Prozessor Interrupts vom PIC annehmen, was mithilfe der Funktion `cpu.enable_int` gemacht wird. Wenn dies funktioniert, müsste automatisch bei jedem Drücken und Loslassen einer Taste die Funktion `int_disp`, der Interrupt-Dispatcher in C aufgerufen werden, da die Interrupt-Vektortabelle im Assembler-Code (siehe Vorgabe) entsprechend initialisiert wurde.
 Mit einer Ausgabe in `int_disp` kann dieser Schritt leicht getestet werden, zumindest einige Male. Wenn die Zeichen nicht vom Tastaturcontroller abgeholt werden, läuft der Tastaturpuffer irgendwann voll. Sobald der Puffer voll ist, sendet der Tastaturcontroller keine Interrupts mehr. Deshalb kann es durchaus passieren, dass zunächst nur für ein oder zwei Tastendrücke Interrupts auftreten.
