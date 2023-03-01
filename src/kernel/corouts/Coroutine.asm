@@ -1,51 +1,97 @@
 ;*****************************************************************************
 ;*                                                                           *
-;*                            C O R O U T I N E                              *
+;*                  C O R O U T I N E                                        *
 ;*                                                                           *
 ;*---------------------------------------------------------------------------*
-;* Beschreibung:    Assemblerdarstellung der 'struct CoroutineState' aus     *
-;*                  CoroutineState.h                                         *
+;* Beschreibung:    Assemblerfunktionen zum Starten des ersten Koroutine und *
+;*                  zum Umschalten zwischen Koroutinen.                      *
 ;*                                                                           *
-;*                  Die Reihenfolge der Registerbezeichnungen muss unbedingt *
-;*                  mit der von 'struct CoroutineState' uebereinstimmen.     *
-;*                                                                           *
-;* Autor:           Olaf Spinczyk, TU Dortmund                               *
+;* Autor:           Michael, Schoettner, HHU, 6.02.2023                      *
 ;*****************************************************************************
 
-%include "kernel/corouts/Coroutine.inc"
 
 ; EXPORTIERTE FUNKTIONEN
 
-[GLOBAL Coroutine_switch]
 [GLOBAL Coroutine_start]
+[GLOBAL Coroutine_switch]
 
 ; IMPLEMENTIERUNG DER FUNKTIONEN
 
 [SECTION .text]
+[BITS 64]
 
-; COROUTINE_START : Startet die erste Coroutine ueberhaupt.
+
+; Coroutine_start: Startet die erste Koroutine
 ;
-; C Prototyp: void Coroutine_start (struct CoroutineState* regs);
-
+; C Prototyp:      void Coroutine_start  (void* context);
 Coroutine_start:
+    mov rsp, [rdi]              ; 1. Parameter = Kontext der neue Koroutine
+    popf
+    pop rbp
+    pop rdi
+    pop rsi
+    pop rdx
+    pop rcx
+    pop rbx
+    pop rax
+    pop r15
+    pop r14
+    pop r13
+    pop r12
+    pop r11
+    pop r10
+    pop r9
+    pop r8
+	ret                         ; Coroutinenwechsel !
 
-; *
-; * Hier muss Code eingefuegt werden
-; *
 
-
-; COROUTINE_SWITCH : Coroutinenumschaltung. Der aktuelle Registersatz wird
-;                    gesichert und der Registersatz der neuen Coroutine
-;                    wird in den Prozessor eingelesen.
+;        
+; Coroutine_switch: Coroutinenumschaltung. Der aktuelle Registersatz wird
+;                   gesichert und der Registersatz der neuen Coroutine
+;                   wird in den Prozessor geladen.
 ;
-; C Prototyp: void Coroutine_switch (struct CoroutineState* regs_now,
-;                                    struct CoroutineState* reg_then);
-;
-; Achtung: Die Parameter werden von rechts nach links uebergeben.
-;
+; C Prototyp:       void Coroutine_switch (void* context_now, void *context_then);
 Coroutine_switch:
+    ;
+    ; Register der aktuellen Koroutine auf ihrem Stack sichern
+    ;
+    push r8
+    push r9
+    push r10
+    push r11
+    push r12
+    push r13
+    push r14
+    push r15
+    push rax
+    push rbx
+    push rcx
+    push rdx
+    push rsi
+    push rdi
+    push rbp
+    pushf
+    mov [rdi], rsp     ; sichere Stackpointer in 'context_now'
+    
+    ;
+    ; Register der naechsten Koroutine laden
+    ;
+    mov rsp, [rsi]     ; lade Stackpointer von 'context_then'
+    popf 
+    pop rbp
+    pop rdi
+    pop rsi
+    pop rdx
+    pop rcx
+    pop rbx
+    pop rax
+    pop r15
+    pop r14
+    pop r13
+    pop r12
+    pop r11
+    pop r10
+    pop r9
+    pop r8
 
-; *
-; * Hier muss Code eingefuegt werden
-; *
-
+	ret                ; Coroutinenwechsel !

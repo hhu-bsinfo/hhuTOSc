@@ -1,9 +1,10 @@
 /*****************************************************************************
  *                                                                           *
- *                              C O R O U T I N E                            *
+ *                  C O R O U T I N E                                        *
  *                                                                           *
  *---------------------------------------------------------------------------*
  * Beschreibung:    Implementierung eines Koroutinen-Konzepts.               *
+ *                                                                           *
  *                  Die Koroutinen sind miteinander verkettet, weswegen die  *
  *                  Klasse Coroutine ein Subtyp von 'Chain' ist.             *
  *                                                                           *
@@ -12,14 +13,14 @@
  *                  Das Umschalten auf die naechste Koroutine erfolgt durch  *
  *                  Aufruf von 'switchToNext'.                               *
  *                                                                           *
- *                  Um bei einem Koroutinenwechsel den Kontext sichern zu    *
- *                  koennen, enthaelt jedes Koroutinenobjekt eine Struktur   *
- *                  CoroutineState, in dem die Werte der nicht-fluechtigen   *
- *                  Register gesichert werden koennen.                       *
+ *                  Bei einem Koroutinenwechsel werden die Register auf dem  *
+ *                  Stack gesichert. Die Instanzvariable 'context' zeigt auf *
+ *                  den letzten hierfuer genutzten Stackeintrag.             *
  *                                                                           *
- * Autor:           Michael, Schoettner, HHU, 13.08.2020                     *
+ * Autor:           Michael, Schoettner, HHU, 13.01.2023                     *
  *****************************************************************************/
 
+#include "kernel/Globals.h"
 #include "kernel/corouts/Coroutine.h"
 
 // Funktionen, die auf der Assembler-Ebene implementiert werden, muessen als
@@ -27,10 +28,8 @@
 // entsprechen.
 extern "C"
 {
-    void Coroutine_start  (struct CoroutineState* regs);
-    void Coroutine_switch (struct CoroutineState* regs_now,
-                           struct CoroutineState* reg_then);
-    
+    void Coroutine_start  (void* context);
+    void Coroutine_switch (void* context_now, void *context_then);
 }
 
 
@@ -40,11 +39,11 @@ extern "C"
  * Beschreibung:    Bereitet den Kontext der Koroutine fuer den ersten       *
  *                  Aufruf vor.                                              *
  *****************************************************************************/
-void Coroutine_init (struct CoroutineState* regs, unsigned int* stack,
+void Coroutine_init (uint64_t *stackptr, uint64_t *stack,
                      void (*kickoff)(Coroutine*), void* object) {
     
-    register unsigned int **sp = (unsigned int**)stack;
-    
+    uint64_t **sp = (uint64_t**)stack;
+
     // Stack initialisieren. Es soll so aussehen, als waere soeben die
     // eine Funktion aufgerufen worden, die als Parameter den Zeiger
     // "object" erhalten hat.
@@ -52,27 +51,39 @@ void Coroutine_init (struct CoroutineState* regs, unsigned int* stack,
     // adresse nur ein unsinniger Wert eingetragen werden. Die aufgerufene
     // Funktion muss daher dafuer sorgen, dass diese Adresse nie benoetigt
     // wird, sie darf also nicht terminieren, sonst kracht's.
-    
-    *(--sp) = (unsigned int*)object;    // Parameter
-    *(--sp) = (unsigned int*)0x131155; // Ruecksprungadresse
+    *(--sp) = (uint64_t *)0x131155; // Ruecksprungadresse
     
     // Nun legen wir noch die Adresse der Funktion "kickoff" ganz oben auf
     // den Stack. Wenn dann bei der ersten Aktivierung dieser Koroutine der
     // Stackpointer so initialisiert wird, dass er auf diesen Eintrag
     // verweist, genuegt ein ret, um die Funktion kickoff zu starten.
-    // Genauso sollen auch alle spaeteren Threadwechsel ablaufen.
+    // Genauso sollen auch alle spaeteren Coroutinen-Wechsel ablaufen.
     
-    *(--sp) = (unsigned int*)kickoff;   // Adresse
-    
-    // Initialisierung der Struktur ThreadState mit den Werten, die die
-    // nicht-fluechtigen Register beim ersten Starten haben sollen.
-    // Wichtig ist dabei nur der Stackpointer.
-    
-    regs->ebx = 0;
-    regs->esi = 0;
-    regs->edi = 0;
-    regs->ebp = 0;
-    regs->esp = sp;
+    *(--sp) = (uint64_t *)kickoff;  // Adresse
+
+    // Nun sichern wir noch alle relevanten Register auf dem Stack
+    *(--sp) = (uint64_t *)0;    	// r8
+    *(--sp) = (uint64_t *)0;   		// r9
+    *(--sp) = (uint64_t *)0;   		// r10
+    *(--sp) = (uint64_t *)0;   		// r11
+    *(--sp) = (uint64_t *)0;   		// r12
+    *(--sp) = (uint64_t *)0;   		// r13
+    *(--sp) = (uint64_t *)0;   		// r14
+    *(--sp) = (uint64_t *)0;   		// r15
+    *(--sp) = (uint64_t *)0;   		// rax
+    *(--sp) = (uint64_t *)0;   		// rbx
+    *(--sp) = (uint64_t *)0;   		// rcx
+    *(--sp) = (uint64_t *)0;   		// rdx
+
+    *(--sp) = (uint64_t *)0;   		// rsi
+    *(--sp) = (uint64_t *)object; 	// rdi -> 1. Param fuer 'kickoff'
+    *(--sp) = (uint64_t *)0;   		// rbp
+    *(--sp) = (uint64_t *)cpu.getflags(); // flags
+
+    // Zum Schluss speichern wir den Zeiger auf den zuletzt belegten
+    // Eintrag auf dem Stack in 'stackptr'. Daruber gelangen wir in 
+    // Coroutine_start an die noetigen Register     
+    *stackptr = (uint64_t)sp;		// aktuellen Stack-Zeiger speichern
 }
 
 
@@ -102,20 +113,18 @@ void kickoff (Coroutine* object) {
  * Parameter:                                                                *
  *      stack       Stack für die neue Koroutine                             *
  *****************************************************************************/
-Coroutine::Coroutine (unsigned int* stack) {
-    Coroutine_init (&regs, stack, kickoff, this);
+Coroutine::Coroutine (uint64_t *stack) {
+    Coroutine_init (&context, stack, kickoff, this);
  }
 
 
 /*****************************************************************************
- * Methode:         Coroutine::switchToNext                                    *
+ * Methode:         Coroutine::switchToNext                          	     *
  *---------------------------------------------------------------------------*
  * Beschreibung:    Auf die nächste Koroutine umschalten.                    *
  *****************************************************************************/
 void Coroutine::switchToNext () {
-
     /* hier muss Code eingefügt werden */
-
 }
 
 
@@ -125,9 +134,7 @@ void Coroutine::switchToNext () {
  * Beschreibung:    Aktivierung der Koroutine.                               *
 *****************************************************************************/
 void Coroutine::start () {
-    
     /* hier muss Code eingefügt werden */
-    
 }
 
 
@@ -137,7 +144,5 @@ void Coroutine::start () {
  * Beschreibung:    Verweis auf nächste Koroutine setzen.                    *
  *****************************************************************************/
 void Coroutine::setNext (Chain* next) {
-
     /* hier muss Code eingefügt werden */
-
 }
