@@ -31,3 +31,7 @@ In folgender Datei muss Code implementiert werden: `kernel/threads/Scheduler.cc`
 ## A5.4: Testanwendung mit Multithreading
 Testen Sie das präemptive Multitasking indem Sie eine kleine Demo-Anwendung schreiben in der ein Zähler-Thread läuft, welcher einen Zähler inkrementiert und an einer festen Position auf dem Bildschirm ausgibt. Zusätzlich soll noch ein zweiter Thread erzeugt werden der eine Melodie abspielt. Neben diesen beiden Threads soll zusätzlich der Fortschritt der Systemzeit im Interrupt ausgegeben werden, siehe nachstehende Abbildung.
 
+
+**Beispielausgab des Testprogramms**
+
+![MTHR](https://github.com/mschoett/hhuTOSc/blob/aufgabe-5/img/mthr.jpg)
