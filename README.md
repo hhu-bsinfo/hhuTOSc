@@ -18,8 +18,7 @@ Testen Sie den Umbau mit einer der Melodien.
 
 In folgender Datei muss Code implementiert werden: `devices/PCSPK.cc`.
 
-
-## A5.3: Threadumschaltung mithilfe des PIT
+## A5.3 Threadumschaltung mithilfe des PIT
 In der Vorgabe ist neu die Methode `preempt`in `Scheduler.cc`. Diese Methode soll bei jedem Tick aus der ISR vom PIT aufgerufen werden und eine erzwungene Threadumschaltung durchführen. Somit entspricht eine Zeitscheibe einem Tick. Das Umschalten kann mithilfe der Methode `dispatch`erfolgen, wie bisher bei `yield`. 
 
 Zusätzliche müssen die Methoden des Schedulers mithilfe von Interrupt-Sperren gegenüber dem PIT synchronisiert werden. Ansonsten kann es sein, dass die Ready-Queue kaputt geht, wenn in einem ungünstigen Augenblick `preempt`aufgerufen wird.
