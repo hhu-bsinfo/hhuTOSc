@@ -3,7 +3,7 @@
 ## Lernziele
 1. Auffrischen der Assemblerkenntnisse2. Verständnis der Abläufe bei einem Koroutinen-Wechsel
 3. Unterschied zwischen Threads und Koroutinen3. Verstehen wie ein Scheduler funktioniert
-s
+
 
 ## A4.1: KoroutinenIn dieser Aufgabe soll die Umschaltung zwischen Koroutinen in Assembler programmiert werden. Koroutinen sind eine Vorstufe zu Threads die später (siehe unten) zusätzlich eingeführt werden. 
 
