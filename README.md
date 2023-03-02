@@ -1,4 +1,4 @@
-# Aufgabe 5: Präemptives Multthreading
+# Aufgabe 5: Präemptives Multithreading
 
 ## Lernziele- Tieferes Verständnis von präemptiven Multitasking- CPU-Entzug mithilfe des PIT- Synchronisierung des Schedulers gegenüber dem PIT-Interrupt
 
@@ -20,4 +20,15 @@ In folgender Datei muss Code implementiert werden: `devices/PCSPK.cc`.
 
 
 ## A5.3: Threadumschaltung mithilfe des PIT
+In der Vorgabe ist neu die Methode `preempt`in `Scheduler.cc`. Diese Methode soll bei jedem Tick aus der ISR vom PIT aufgerufen werden und eine erzwungene Threadumschaltung durchführen. Somit entspricht eine Zeitscheibe einem Tick. Das Umschalten kann mithilfe der Methode `dispatch`erfolgen, wie bisher bei `yield`. 
+
+Zusätzliche müssen die Methoden des Schedulers mithilfe von Interrupt-Sperren gegenüber dem PIT synchronisiert werden. Ansonsten kann es sein, dass die Ready-Queue kaputt geht, wenn in einem ungünstigen Augenblick `preempt`aufgerufen wird.
+
+Zudem muss sichergestellt werden, dass der Scheduler fertig initialisiert ist, bevor das erste Mal `preempt`versucht umzuschalten. Dies kann am einfachsten mithilfe einer Instanzvariable `initialized` in `Scheduler.h`realisiert werden. `initialized` sollte erst auf `true` gesetzt werden, wenn der erste Thread läuft.
+
+In folgender Datei muss Code implementiert werden: `kernel/threads/Scheduler.cc`.
+
+
+## A5.4: Testanwendung mit Multithreading
+Testen Sie das präemptive Multitasking indem Sie eine kleine Demo-Anwendung schreiben in der ein Zähler-Thread läuft, welcher einen Zähler inkrementiert und an einer festen Position auf dem Bildschirm ausgibt. Zusätzlich soll noch ein zweiter Thread erzeugt werden der eine Melodie abspielt. Neben diesen beiden Threads soll zusätzlich der Fortschritt der Systemzeit im Interrupt ausgegeben werden, siehe nachstehende Abbildung.
 
