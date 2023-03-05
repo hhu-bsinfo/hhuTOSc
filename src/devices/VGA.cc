@@ -343,29 +343,34 @@ void VGA::drawLineMajorAxis(
     const int dx2 = dx * 2;
     const int dy2 = dy * 2;
     const int dy2Mindx2 = dy2 - dx2;
-	const uint32_t bytes_per_pixel = bpp/8;
+	  const uint32_t bytes_per_pixel = bpp/8;
 
-	if (isGraphicOn()==false) return ;
+    if (isGraphicOn()==false) return ;
+ 
  
     // calculate the starting error value
     int Error = dy2 - dx;
  
     // draw the first pixel
     setPixelDirect(pixel, color);
-
+ 
+    
     // loop across the major axis
     while (dx--) {
         // move on major axis and minor axis
         if (Error > 0) {
-            pixel += (majorAxisPixelMovement + minorAxisPixelMovement)*bytes_per_pixel;;
+					  int offset = (majorAxisPixelMovement + minorAxisPixelMovement) * bytes_per_pixel;
+ 
+   				  pixel += offset;
             Error += dy2Mindx2;
         }
         // move on major axis only
         else {
-            pixel += (majorAxisPixelMovement)*bytes_per_pixel;
+					  int offset = (majorAxisPixelMovement*bytes_per_pixel);
+            pixel += offset;
             Error += dy2;
         }
- 
+
         // draw the next pixel
         setPixelDirect(pixel, color);
     }
@@ -414,13 +419,28 @@ void VGA::drawLineSingleAxis( uint8_t *pixel,
  *****************************************************************************/
 void VGA::drawLine(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2, 
                    uint32_t color) {
-	uint8_t *pixels = (uint8_t *) lfb; 
-	const uint32_t  bytes_per_pixel = bpp/8;
-	const uint32_t  bytes_per_line = xres*bpp/8;
+	  uint8_t *pixels = (uint8_t *) lfb; 
+	  const uint32_t  bytes_per_pixel = bpp/8;
+	  const uint32_t  bytes_per_line = xres*bpp/8;
 
 
-	if (isGraphicOn()==false) return ;
+	  if (isGraphicOn()==false) return ;
 
+    // check boundaries
+    if (x1 < 0)     x1 = 0; 
+    if (x1 >= xres) x1 = xres - 1;
+  
+    if (x2 < 0)     x2 = 0; 
+    if (x2 >= xres) x2 = xres - 1;
+
+    if (y1 < 0)     y1 = 0; 
+    if (y1 >= yres) y1 = yres - 1;
+
+    if (y2 < 0)     y2 = 0; 
+    if (y2 >= yres) y2 = yres - 1;
+  
+  
+  
     if (mode == 0) pixels = (uint8_t *) hfb;
 	
     // calculate our deltas
@@ -439,7 +459,7 @@ void VGA::drawLine(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2,
  
         // get the address of the pixel at (x1,y1)
         uint8_t *startPixel = &pixels[ y1*bytes_per_line + x1*bytes_per_pixel];
- 
+        
         // determine special cases
         if (dy > 0)
             drawLineMajorAxis(startPixel, 1, xres, dx, dy, color);
@@ -447,6 +467,7 @@ void VGA::drawLine(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2,
             drawLineMajorAxis(startPixel, 1, -xres, dx, -dy, color);
         else
             drawLineSingleAxis(startPixel, 1, dx, color);
+         
     }
     // else the Y axis is the major axis
     else {
@@ -526,6 +547,9 @@ void VGA::drawPixel(uint32_t x, uint32_t y,uint32_t col) {
 void VGA::setPixelDirect(uint8_t *ptr, uint32_t col) {
 
 	if (isGraphicOn()==false) return ;
+
+  // check mem boundaries	
+ 	if ( (uint64_t)ptr > (lfb + xres*yres*bpp) ) return ;
    
     // Adresse des Pixels berechnen und Inhalt schreiben
     switch (bpp) {
