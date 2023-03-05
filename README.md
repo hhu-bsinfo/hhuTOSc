@@ -1,24 +1,26 @@
-# Aufgabe 6: Semaphore
+# Aufgabe 7: Eine eigene BS-Erweiterung / Anwendung
 
 ## Lernziele
-1. Verstehen wie Semaphoren implementiert werden und damit Thread-Synchronisierung funktioniert
-2. Erweitern des Schedulers sowie der Thread-Zustände, um Blockieren und Deblockieren zu realisieren
+1. Eine Anwendung schreiben
+2. Alternativ eine Betriebssystem-Komponente entwickeln
+
+## Mögliche Themenrichtunge
+- Grafikdemo (multithreaded)
+- Retro-Spiel (z.B. Snake, Pacman, ...)
+- einfache Shell (Beispiele für Befehle: clear, time, meminfo, ...) 
+- Scheduler mit Prioriäten (mit einer Demo)
 
 
-## A6.1: Synchronisierung mit Interrupt-Sperre
-Erweitern Sie das Testprogramm aus A5.4, indem Sie zwei oder drei Threads starten, welche jeweils einen Zähler an einer festen Position auf dem Bildschirm ausgeben. Zusätzlich soll ein weiterer Thread eine Melodie über den Lautsprecher abspielen.
+## Vorgabe
+Die Dateien in der Vorgabe umfassen eine Reihe von Zusatzfunktionen.
 
-Sie sollten dann beobachten können, dass die Ausgabe der Zähler nicht wie geplant funktioniert. Überlegen Sie warum dies so ist und synchronisieren Sie die Text-Ausgaben in den Threads durch einen kritischen Abschnitt, den Sie mithilfe von Interrupt-Sperren realisieren.
- 
-*Achtung: Das Sperren von Interrupts zu Synchronisierungszwecken funktioniert nur auf einem Einkern-BS!*
+### Grafikfunktionen 
+Vorhanden sind nur sehr grundlegende Grafik-Funktionen, inkl. einer Text-Ausgabe mit einer Schriftart. Weitere Funktionen sollen je nach Anwendung ergänzt werden. 
 
+Ob das System im Grafik- oder Textmodus startet wird in `boot/boot.asm`durch die die Konstante `TEXT_MODE` festgelegt. Wenn diese Konstante aukommentiert wird, so schaltet `grub` direkt in den Grafikmodus (800x600 mit 32 Bit pro Pixel). Eine alternative Grafikauflösung kann durch die Konstanten `MULTIBOOT_GRAPHICS_*` in  `boot/boot.asm` eingestellt werden. Mögliche Auflösungen sollten sich an dem VESA-Standard orientieren, siehe hier: https://en.wikipedia.org/wiki/VESA_BIOS_Extensions
 
-## A6.2: Semaphore
-Unser Betriebssystem soll nun um Semaphore erweitert werden, mit denen Threads sich gegenseitig synchronisieren können, ohne Interrupts zu sperrern. Hierfür muss die Klasse `lib/Semaphore` implementiert werden. Jedes Semaphore-Objekt hat eine Warteschlange, in der Threads verwaltet werden, die blockiert sind, weil sie auf einen `v`-Aufruf für diese Semaphore warten. Die Methoden `p`und `v`müssen atomar ausgeführt werden, was mithilfe der Klasse  `lib/Spinlock` realisiert werden soll. Die Klasse `lib/Spinlock` ist in der Vorgabe fertig implementiert und bietet objekt-orientierte Sperren an, basierend auf der atomaren Maschineninstruktion `cmpxchg`. 
-
-Zusätzlich muss der bestehende Scheduler um die Methoden `block` und `deblock` erweitert werden. In der Methode `block`soll auf den nächsten Thread umgeschaltet werden. Der aktuelle Thread soll nicht mehr in die `readyQueue` des Schedulers eingefügt werden, sondern wird in der Warteschlange der Semaphore verwaltet. In der Methode `deblock` soll der Thread der deblockiert werden soll, wieder in die `readyQueue` des Schedulers eingefügt werden. Wichtig ist, dass 
-`block` und `deblock`, wie die anderen Methoden des Schedulers, gegenüber den Interrupts synchronisiert werden, da hier die `readyQueue` verändert wird.
-
-Synchronisieren Sie die Zähler-Threads im Testprogramm aus A6.1 nun mithilfe eines Semaphor-Objektes. 
-
-In folgenden Dateien muss Code implementiert werden: `lib/Semaphore.cc`, `kernel/Scheduler.cc`, `user/aufgabe6/SemaphoeDemo`und `user/aufgabe6/SemaLoopThread.cc`. 
+Folgende Dateien sind für die Grafik-Unterstützung in der Vorgabe:
+- `VGA`: Zeichenfunktionen
+- `VGA_Stream`: Textausgabe über den Stream-Operator `<<` im Grafikmodus 
+- `fonts/*`: Bitmap-Fonts für die Textausgabe im Grafikmodus
+- `user/aufgabe7/GrafikDemo`: Zeigt Ausgaben im Grafikmodus
