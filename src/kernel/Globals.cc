@@ -12,8 +12,8 @@
 
 CPU                   cpu;        
 PCSPK                 pcspk;      // PC-Lautsprecher
-CGA_Stream            kout;       // Ausgabe-Strom fuer Kernel
-//VGA_Stream            kout;       // VGA-Ausgabe-Strom fuer Kernel
+//CGA_Stream            kout;       // Ausgabe-Strom fuer Kernel
+VGA_Stream            kout;       // VGA-Ausgabe-Strom fuer Kernel
 uint64_t              total_mem;  // RAM total
 //BumpAllocator         allocator;       
 LinkedListAllocator   allocator;       

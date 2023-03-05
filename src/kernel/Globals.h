@@ -27,8 +27,8 @@
 
 extern CPU                  cpu;        
 extern PCSPK                pcspk;      // PC-Lautsprecher
-extern CGA_Stream           kout;       // Ausgabe-Strom fuer Kernel
-//extern VGA_Stream           kout;       // VGA-Ausgabe-Strom fuer Kernel
+//extern CGA_Stream           kout;       // Ausgabe-Strom fuer Kernel
+extern VGA_Stream           kout;       // VGA-Ausgabe-Strom fuer Kernel
 extern uint64_t             total_mem;  // RAM total
 //extern BumpAllocator    allocator;       
 extern LinkedListAllocator  allocator;       
