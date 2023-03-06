@@ -22,5 +22,6 @@ Ob das System im Grafik- oder Textmodus startet wird in `boot/boot.asm`durch die
 Folgende Dateien sind für die Grafik-Unterstützung in der Vorgabe:
 - `VGA`: Zeichenfunktionen
 - `VGA_Stream`: Textausgabe über den Stream-Operator `<<` im Grafikmodus 
+- `Globals.cc`: `kout` für  `VGA_Stream`
 - `fonts/*`: Bitmap-Fonts für die Textausgabe im Grafikmodus
 - `user/aufgabe7/GrafikDemo`: Zeigt Ausgaben im Grafikmodus
