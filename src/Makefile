@@ -160,8 +160,8 @@ endif
 help:
 	@/bin/clear
 	@/bin/echo -e "\n" \
-		"\e[1mMAKEFILE fuer hhuOS\e[0m\n" \
-		"-------------------\n\n" \
+		"\e[1mMAKEFILE fuer hhuTOSc\e[0m\n" \
+		"---------------------\n\n" \
 		"Durch Aufruf von '\e[4mmake\e[0m' wird das Betriebssystem compiliert und gebunden.\n" \
 		"Danach wird die Datei 'system.iso' im Verzeichnis 'build' erzeugt.\n"
 	@/bin/echo -e " Emulation\n" \
