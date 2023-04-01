@@ -1,2 +1,2 @@
 # hhuTOSc
-hhu Teaching Operating System C/C++
+hhu Teaching Operating System written in C/C++
