@@ -7,7 +7,7 @@ Dazu soll in `main.cc` in der Einstiegsfunktion `main` das Objekt `kout` für v
 In folgenden Dateien müssen Quelltexte einfügt werden:
 `main.cc`, `devices/CGA.cc` und `user/aufgabe1/TextDemo.cc`.
 
-*Beachten Sie die Kommentare im Quelltext der Vorgabe, sowie die Datei* `CGA.pdf`
+*Beachten Sie die Kommentare im Quelltext der Vorgabe, sowie die Datei* `CGA-slides.pdf`
 
 ### Beispielausgaben
 
@@ -38,4 +38,4 @@ In folgenden Dateien müssen Quelltexte einfügt werden: `devices/Keyboard.cc`
 *Achtung:
 Die Methoden zur Ansteuerung der LEDs und der Tastaturwiederholrate funktionieren nur richtig auf echter Hardware.*
 
-*Beachten Sie die Kommentare im Quelltext der Vorgabe, sowie die Dateien* `Tastatur.pdf` *und* `HinweiseTastatur.pdf`.
+*Beachten Sie die Kommentare im Quelltext der Vorgabe, sowie die Dateien* `Tastatur-slides.pdf` *und* `HinweiseTastatur.pdf`.
