@@ -12,7 +12,7 @@
 
 #include "kernel/Globals.h"
 #include "user/aufgabe1/TextDemo.h"
-#include "user/aufgabe1/SoundDemo.h"
+#include "user/aufgabe1/KeyboardDemo.h"
 
 
 void aufgabe01() { 

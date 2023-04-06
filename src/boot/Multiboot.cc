@@ -29,26 +29,13 @@ void mb_init(uint64_t mbi_addr) {
    /* Set MBI to the address of the Multiboot information structure. */
    mbi = (multiboot_info_t *) mbi_addr;
 
-
+/*
    if (CHECK_FLAG (mbi->flags, 12)) {
-	   
       kout.set_graphic_infos( mbi->framebuffer_addr, mbi->framebuffer_width, 
                               mbi->framebuffer_height, mbi->framebuffer_pitch,
                               mbi->framebuffer_bpp
                             );
-
-/*      uint64_t  fb = (uint64_t) mbi->framebuffer_addr;
-      uint32_t  i;
-      uint32_t  color = 0xffff;
-      uint32_t  *pixel;
-
-      for (i = 0; i < mbi->framebuffer_width && i < mbi->framebuffer_height; i++)
-        {
-          pixel = (uint32_t *) (fb + mbi->framebuffer_pitch * i + 4 * i);
-          *pixel = color;
-        }
-        */
     }
-    
+*/    
     main();
 }
