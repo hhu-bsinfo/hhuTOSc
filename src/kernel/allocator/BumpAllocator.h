@@ -28,7 +28,7 @@ public:
 
       void init ();        
       void dump_free_memory ();
-      void* alloc (unsigned int req_size);
+      void* alloc (uint64_t req_size);
       void free (void *ptr);
 
 };

@@ -43,7 +43,7 @@ void BumpAllocator::dump_free_memory() {
  *---------------------------------------------------------------------------*
  * Beschreibung:    Einen neuen Speicherblock allozieren.                    * 
  *****************************************************************************/
-void * BumpAllocator::alloc(unsigned int req_size) {
+void * BumpAllocator::alloc(uint64_t req_size) {
 
      /* Hier muess Code eingefuegt werden */
 
@@ -56,6 +56,6 @@ void * BumpAllocator::alloc(unsigned int req_size) {
  * Beschreibung:    Nicht implementiert.                                     *
  *****************************************************************************/
 void BumpAllocator::free(void *ptr) {
-    kout << "   mm_free: ptr= " << hex << (unsigned int)ptr << ", not supported" << endl;
+    kout << "   mm_free: ptr= " << hex << (uint64_t)ptr << ", not supported" << endl;
 }
 

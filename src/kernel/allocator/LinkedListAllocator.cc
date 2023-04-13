@@ -50,7 +50,7 @@ void LinkedListAllocator::dump_free_memory() {
  *---------------------------------------------------------------------------*
  * Beschreibung:    Einen neuen Speicherblock allozieren.                    * 
  *****************************************************************************/
-void * LinkedListAllocator::alloc(unsigned int req_size) {
+void * LinkedListAllocator::alloc(uint64_t req_size) {
 
      /* Hier muess Code eingefuegt werden */
 

@@ -59,10 +59,10 @@ void operator delete[] ( void* ptr ) {
     allocator.free(ptr);
 }
 
-void operator delete(void*ptr, unsigned int sz) {
+void operator delete(void*ptr, uint64_t sz) {
     allocator.free(ptr);
 }
 
-void operator delete(void*ptr, unsigned long sz) {
+void operator delete(void*ptr, uint64_t sz) {
     allocator.free(ptr);
 }
