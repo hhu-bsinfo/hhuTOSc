@@ -27,7 +27,7 @@ Hinweis: Schauen Sie sich vor dem Programmieren der Assemblerfunktionen nochmals
 
 **Beispielausgaben der Koroutinen**
 
-![KOR1](https://github.com/mschoett/hhuTOSc/blob/aufgabe-4/img/corouts.jpg)
+![KOR1](https://github.com/hhu-bsinfo/hhuTOSc/blob/aufgabe-4/img/corouts.jpg)
 
 (In eckigen Klammern wird die Koroutinen-ID angezeigt.)
 
@@ -70,8 +70,8 @@ einem Thread-Wechsel soll der Thread am Kopf der `readyQueue` entfernt und durch
 ## A4.5 Eine multi-threaded Testanwendung
 Die Vorgabe beinhaltet einen HelloWorld-Thread, um einen ersten Test durchzuführen. Der Thread gibt einen Spruch aus und terminiert sich dann. Anschließend soll nur noch der Idle-Thread ausgeführt werden. Um dies zu testen soll der Idle-Thread und der HelloWorld-Thread in `main` angelegt und im Scheduler registriert werden. Anschließend soll der Scheduler mit `scheduler.schedule()` gestartet werden.
 
-Als zweiter eigener Test soll nun eine multi-threaded Testanwendung bestehend aus vier Threads geschrieben werden. Hierzu soll das Anwendungsbeispiel mit den drei Zählern vom letzten Übungsblatt von Koroutinen auf Threads umgebaut werden. Ein Haupt-Thread der Anwendung `CoopThreadDemo` erzeugt drei Zähler-Threads, Instanzen von der Klasse `LoopThread`. Der Haupt-Thread der Anwendung soll eine gewisse Zeit laufen und sich dann selbst mit exit terminieren, nachdem er beispielsweise 1000 Mal die CPU bekommen hat. Bevor sich der Haupt-Thread der Anwendung terminiert soll er noch einen `LoopThread` mit `kill` terminieren. Somit sollten zunächst drei Zähler auf dem Bildschirm ausgegeben werden und dann einer bei 1000 stoppen, siehe Abbildung unten.
+Als zweiter eigener Test soll nun eine multi-threaded Testanwendung bestehend aus vier Threads geschrieben werden. Hierzu soll das Anwendungsbeispiel mit den drei Zählern vom letzten Übungsblatt von Koroutinen auf Threads umgebaut werden. Ein Haupt-Thread der Anwendung `CoopThreadDemo` erzeugt drei Zähler-Threads, Instanzen von der Klasse `LoopThread`. Der Haupt-Thread der Anwendung soll eine gewisse Zeit laufen und sich dann selbst mit exit terminieren, nachdem er beispielsweise 1000 Mal die CPU mit `yield`abgegeben hat. Bevor sich der Haupt-Thread der Anwendung terminiert soll er noch einen `LoopThread` mit `kill` terminieren. Somit sollten zunächst drei Zähler auf dem Bildschirm ausgegeben werden und dann einer bei 1000 stoppen, siehe Abbildung unten.
 
 **Beispielausgaben der Threads**
 
-![THR](https://github.com/mschoett/hhuTOSc/blob/aufgabe-4/img/threads.jpg)
+![THR](https://github.com/hhu-bsinfo/hhuTOSc/blob/aufgabe-4/img/threads.jpg)
