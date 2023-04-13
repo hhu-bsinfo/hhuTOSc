@@ -14,13 +14,13 @@ Sehen Sie sich zunächst die Inhalte der neuen Dateien in der Vorgabe im Ordner 
 
 Der Zeiger auf den letzten Stack-Eintrag soll in der Instanzvariablen `context` in der Klasse `Coroutine` gespeichert werden.
 
-Ergänzen Sie anschließend die leeren Methoden in `Coroutine.cc`. Die Verkettung der Koroutinen erfolgt mit der Klasse `lib/Chain`.
+Ergänzen Sie anschließend die leeren Methoden in `Coroutine.cc`. Die Verkettung der Koroutinen erfolgt durch Erben von der Klasse `lib/Chain`.
 
 Schreiben Sie für Ihre Koroutinen-Implementierung folgendes Testprogramm. Im Verzeichnis
 `user` der Vorgabe finden Sie hierfür Dateien. Es sollen drei Koroutinen erzeugt und miteinander
 verkettet werden. Jede Koroutine soll einen Zähler hochzählen und an einer festen Position auf dem Bildschirm ausgeben und dann auf die nächste Koroutine umschalten. Durch die Verkettung werden die drei Koroutinen dann reihum abwechselnd ausgeführt, wodurch die Zähler scheinbar nebenläufig vorangetrieben werden, siehe nachstehende Abbildung.
 
-In folgenden Dateien muss Code implementiert werden: `kernel/corouts/Coroutine.asm`, `kernel/corouts/Coroutine.cc`, `user/aufgabe4/CoroutineDemo.cc`, `user/aufgabe4/CoroutineLoop.cc`
+In folgenden Dateien muss Code implementiert werden: `kernel/corouts/Coroutine.asm`, `kernel/corouts/Coroutine.cc`, `user/aufgabe4/CoroutineDemo.cc`, `user/aufgabe4/CoroutineLoop.cc` und `main.cc`
 
 Hinweis: Schauen Sie sich vor dem Programmieren der Assemblerfunktionen nochmals die Aufrufkonvention für die Parameterübergabe an.
 
