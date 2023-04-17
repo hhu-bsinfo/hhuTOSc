@@ -31,7 +31,7 @@ OutStream& OutStream::operator << (char c) {
     return *this;
 }
 
-OutStream& OutStream::operator << (unsigned char c) {
+OutStream& OutStream::operator << (uint8_t c) {
     return *this << (char) c;
 }
 
@@ -48,36 +48,36 @@ OutStream& OutStream::operator << (char* string) {
 //  Ganzer Zahlen im Zahlensystem zur Basis base in Stream ausgeveb
 //  Alle vorzeichenbehafteten Datentypen werden als long dargestellt,
 //  Alle vorzeichenlosen als unsigned long.
-OutStream& OutStream::operator << (short ival) {
-    return *this << (long) ival;
+OutStream& OutStream::operator << (int16_t ival) {
+    return *this << (int64_t) ival;
 }
   
-OutStream& OutStream::operator << (unsigned short ival) {
-    return *this << (unsigned long) ival;
+OutStream& OutStream::operator << (uint16_t ival) {
+    return *this << (uint64_t) ival;
 }
   
-OutStream& OutStream::operator << (int ival) {
-    return *this << (long) ival;
+OutStream& OutStream::operator << (int32_t ival) {
+    return *this << (int64_t) ival;
 }
   
-OutStream& OutStream::operator << (unsigned int ival) {
-    return *this << (unsigned long) ival;
+OutStream& OutStream::operator << (uint32_t ival) {
+    return *this << (uint64_t) ival;
 }
 
 // Darstellung eine vorzeichenbehafteten ganzen Zahl.
-OutStream& OutStream::operator << (long ival) {
+OutStream& OutStream::operator << (int64_t ival) {
     // Bei negativen Werten wird ein Minuszeichen ausgegeben.
     if (ival < 0) {
         put ('-');
         ival = -ival;
     }
     // Dann wird der Absolutwert als vorzeichenlose Zahl ausgegeben.
-    return *this << (unsigned long) ival;
+    return *this << (uint64_t) ival;
 }
 
 // Darstellung einer vorzeichenlosen ganzen Zahl.
-OutStream& OutStream::operator << (unsigned long ival) {
-    unsigned long div;
+OutStream& OutStream::operator << (uint64_t ival) {
+    uint64_t div;
     char digit;
    
     if (base == 8)
@@ -89,10 +89,10 @@ OutStream& OutStream::operator << (unsigned long ival) {
 
     // Bestimmung der groessten Potenz der gewaehlten Zahlenbasis, die
     // noch kleiner als die darzustellende Zahl ist.
-    for (div = 1; ival/div >= (unsigned long) base; div *= base);
+    for (div = 1; ival/div >= (uint64_t) base; div *= base);
 
     // ziffernweise Ausgabe der Zahl
-    for (; div > 0; div /= (unsigned long) base) {
+    for (; div > 0; div /= (uint64_t) base) {
         digit = ival / div;
         if (digit < 10)
                 put ('0' + digit);
@@ -107,7 +107,7 @@ OutStream& OutStream::operator << (unsigned long ival) {
 OutStream& OutStream::operator << (void* ptr) {
     int oldbase = base;
     base = 16;
-    *this << (unsigned long) ptr;
+    *this << (uint64_t) ptr;
     base = oldbase;
     return *this;
  }

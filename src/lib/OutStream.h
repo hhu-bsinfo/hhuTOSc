@@ -23,6 +23,7 @@
 #define __OutStream_include__
 
 #include "lib/StringBuffer.h"
+#include "lib/Types.h"
 
 class OutStream : public StringBuffer {
     
@@ -41,19 +42,19 @@ public:
 
       // Darstellung eines Zeichens (trivial)
       OutStream& operator << (char c);
-      OutStream& operator << (unsigned char c);
+      OutStream& operator << (uint8_t c);
 
       // Darstellung einer nullterminierten Zeichenkette
       OutStream& operator << (char* string);
 
       //  Darstellung ganzer Zahlen im Zahlensystem zur Basis base
-      OutStream& operator << (short ival);
-      OutStream& operator << (unsigned short ival);
-      OutStream& operator << (int ival);
-      OutStream& operator << (unsigned int ival);
-      OutStream& operator << (long ival);
-      OutStream& operator << (unsigned long ival);
-
+      OutStream& operator << (int16_t ival);
+      OutStream& operator << (uint16_t ival);
+      OutStream& operator << (int32_t ival);
+      OutStream& operator << (uint32_t ival);
+      OutStream& operator << (int64_t ival);
+      OutStream& operator << (uint64_t ival);
+      
       // Darstellung eines Zeigers als hexadezimale ganze Zahl
       OutStream& operator << (void* ptr);
 
