@@ -9,7 +9,6 @@
  * Autor:           Michael Schoettner, HHU, 13.6.2020                        *
  *****************************************************************************/
 
-#include <stddef.h>
 #include "kernel/Globals.h"
 #include "kernel/allocator/LinkedListAllocator.h"
 
