@@ -10,5 +10,5 @@
 
 #include "kernel/Globals.h"
 
-unsigned long         systime=0;  // wird all 10ms hochgezaehlt
+uint64_t              systime=0;  // wird all 10ms hochgezaehlt
 PIT                   pit(10000); // Zeitgeber (10ms)

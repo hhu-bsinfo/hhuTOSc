@@ -12,7 +12,7 @@
 
 #include "devices/PIT.h"
 
-extern unsigned long         systime;    // wird all 10ms hochgezaehlt
+extern uint64_t              systime;    // wird all 10ms hochgezaehlt
 extern PIT                   pit;        // Zeitgeber
  
 #endif
