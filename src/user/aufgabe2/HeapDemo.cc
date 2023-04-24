@@ -10,8 +10,8 @@
 
 #include "kernel/Globals.h"
 #include "kernel/Allocator.h"
-#include "user/HeapDemo.h"
-#include "user/MyObj.h"
+#include "user/aufgabe2/HeapDemo.h"
+#include "user/aufgabe2/MyObj.h"
 
 
 // Hilfsfunktion: Auf Return-Taste warten
