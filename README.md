@@ -24,7 +24,7 @@ Zu Beginn gibt es nur einen großen freien Speicherblock, der den gesamten freie
 
 Die folgenden Hinweise sind Ergänzungen zu denen in Aufgabe A2.1!
 In der Datei `LinkedListAllocator.cc` soll die Speicherverwaltung implementiert werden. In`Globals.cc/.h` soll nun LinkedListAllokator allocator verwendet werden.
-Es ist zu beachten, dass bei der Allokation neben der angeforderten Speichergröße auch 4 Byte zusätzlich für eine Längenangabe berücksichtigt werden. Dies ist notwendig, damit bei einer Freigabe eines Speicherblocks die Längeninformation verfügbar ist. Es bietet sich an die Länge zu Beginn eines belegten Speicherblocks abzuspeichern und beim Aufruf von `alloc` einen Zeiger direkt nach dem Längenfeld zurückzugeben.
+Es ist zu beachten, dass bei der Allokation neben der angeforderten Speichergröße auch 8 Byte zusätzlich für eine Längenangabe berücksichtigt werden. Dies ist notwendig, damit bei einer Freigabe eines Speicherblocks die Längeninformation verfügbar ist. Es bietet sich an die Länge zu Beginn eines belegten Speicherblocks abzuspeichern und beim Aufruf von `alloc` einen Zeiger direkt nach dem Längenfeld zurückzugeben.
 In folgenden Dateien müssen Quelltexte einfügt werden: `user/aufgabe2/HeapDemo.cc` und`kernel/allocator/LinkedListAllocator.cc`.
 
 
