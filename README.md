@@ -38,4 +38,4 @@ In folgenden Dateien müssen Quelltexte einfügt werden: `devices/Keyboard.cc`
 *Achtung:
 Die Methoden zur Ansteuerung der LEDs und der Tastaturwiederholrate funktionieren nur richtig auf echter Hardware.*
 
-*Beachten Sie die Kommentare im Quelltext der Vorgabe, sowie die Dateien* `Tastatur-slides.pdf` *und* `HinweiseTastatur.pdf`.
+*Beachten Sie die Kommentare im Quelltext der Vorgabe, sowie die Datei* `KBD-slides.pdf`.
