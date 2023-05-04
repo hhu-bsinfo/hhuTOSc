@@ -60,7 +60,7 @@ In folgenden Dateien müssen Quelltexte einfügt werden: `devices/PCSPK.cc` un
 
 
 ## Beispielausgaben zur Speicherverwaltung
-Nachstehend sind einige Screenshots zum Testen der Speicherverwaltung. Sie können sich natürlich selbst Testfunktionen und Testausgaben überlegen. Sollten die Ausgaben über mehrere Seiten gehen bietet es sich an auf einen Tastendruck mit `kb.keyhit()` zu waren. 
+Nachstehend sind einige Screenshots zum Testen der Speicherverwaltung. Sie können sich natürlich selbst Testfunktionen und Testausgaben überlegen. Sollten die Ausgaben über mehrere Seiten gehen bietet es sich an auf einen Tastendruck mit `kb.keyhit()` zu warten. 
 
 ![Heap1](https://github.com/mschoett/hhuTOSc/blob/aufgabe-2/img/heap1.jpg)
 
