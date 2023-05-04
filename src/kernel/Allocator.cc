@@ -13,7 +13,7 @@
  *                                                                           *
  * Achtung:         Benötigt einen PC mit mindestens 5 MB RAM!               *
  *                                                                           *
- * Autor:           Michael Schoettner, HHU, 1.3.2022                        *
+ * Autor:           Michael Schoettner, HHU, 3.5.2022                        *
  *****************************************************************************/
 
 #include "kernel/Globals.h"
@@ -23,7 +23,8 @@
 #define MEM_SIZE_DEF        	 8*1024*1024 // Groesse des Speichers = 8 MB
 
 #define HEAP_START           	 0x400000 	// Startadresse des Heaps
-#define HEAP_SIZE	        	 2*1024*1024 	// Default-Groesse des Heaps
+#define HEAP_SIZE	        	 2*1024*1024 	// Default-Groesse des Heaps, falls 
+											// nicht über das BIOS ermittelbar 
 
 /*****************************************************************************
  * Konstruktor:     Allocator::Allocator                                     *
@@ -47,22 +48,18 @@ void* operator new ( size_t size ) {
      return allocator.alloc(size);
 }
 
+void operator delete ( void* ptr )  {
+    allocator.free(ptr);
+}
+
 void* operator new[]( size_t count ) {
     return allocator.alloc(count);
 }
 
-void operator delete ( void* ptr )  {
-    allocator.free(ptr);
-}
- 
 void operator delete[] ( void* ptr ) {
     allocator.free(ptr);
 }
 
-void operator delete(void*ptr, uint64_t sz) {
-    allocator.free(ptr);
-}
-
-void operator delete(void*ptr, uint64_t sz) {
+void operator delete(void*ptr, unsigned long) {
     allocator.free(ptr);
 }
