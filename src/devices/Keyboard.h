@@ -6,7 +6,7 @@
  * Beschreibung:    Treiber für den Tastaturcontroller des PCs.              *
  *                                                                           *
  * Autor:           Olaf Spinczyk, TU Dortmund                               *
- *                  Modifikationen, Michael Schoettner, 2.6.2022             *
+ *                  Modifikationen, Michael Schoettner, 4.5.2023             *
  *****************************************************************************/
 #ifndef __Keyboard_include__
 #define __Keyboard_include__
@@ -14,14 +14,16 @@
 #include "devices/Key.h"
 #include "kernel/IOport.h"
 #include "kernel/interrupts/ISR.h"
+#include "lib/Types.h"
+
 
 class Keyboard : public ISR {
     
 private:
     Keyboard(const Keyboard &copy); // Verhindere Kopieren
 
-    unsigned char code;     // Byte von Tastatur
-    unsigned char prefix;   // Prefix von Tastatur
+    uint8_t code;           // Byte von Tastatur
+    uint8_t prefix;         // Prefix von Tastatur
     Key gather;             // letzter dekodierter Key
     char leds;              // Zustand LEDs
 
@@ -52,11 +54,11 @@ private:
     enum { break_bit = 0x80, prefix1 = 0xe0, prefix2   = 0xe1 };
 
     // Klassenvariablen
-    static unsigned char normal_tab[];
-    static unsigned char shift_tab[];
-    static unsigned char alt_tab[];
-    static unsigned char asc_num_tab[];
-    static unsigned char scan_num_tab[];
+    static uint8_t normal_tab[];
+    static uint8_t shift_tab[];
+    static uint8_t alt_tab[];
+    static uint8_t asc_num_tab[];
+    static uint8_t scan_num_tab[];
          
     // Interpretiert die Make und Break-Codes der Tastatur.
     bool key_decoded ();
@@ -64,20 +66,23 @@ private:
     // Ermittelt anhand von Tabellen den ASCII-Code.
     void get_ascii_code ();
     
-   // Tastaturabfrage (vorerst Polling)
-   Key key_hit ();
-    
 public:
-   unsigned int lastkey; // speichert den ASCII-Code der zuletzt gedrückten Taste
+   // speichert den ASCII-Code der zuletzt gedrückten Taste
+   // Variable wird in 'trigger' geschrieben
+   unsigned int lastkey; 
    
    // Initialisierung der Tastatur.
    Keyboard ();
+
+   // Tastaturabfrage (vorerst Polling)
+   // Sollte nicht mehr verwendet werden, daher auskommentieren
+   // Key key_hit ();
 
    // Fuehrt einen Neustart des Rechners durch.
    void reboot ();
 
    // Einstellen der Wiederholungsrate der Tastatur.
-   void set_repeat_rate (int speed, int delay);
+   void set_repeat_rate (uint32_t speed, uint32_t delay);
 
    // Setzt oder loescht die angegebene Leuchtdiode.
    void set_led (char led, bool on);
