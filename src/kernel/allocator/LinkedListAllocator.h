@@ -6,7 +6,7 @@
  * Beschreibung:    Einfache Speicherverwaltung, welche den freien Speicher  *
  *                  mithilfe einer einfach verketteten Liste verwaltet.      *
  *                                                                           *
- * Autor:           Michael Schoettner, HHU, 13.6.2020                        *
+ * Autor:           Michael Schoettner, HHU, 4.5.2023                        *
  *****************************************************************************/
 
 #ifndef __LinkedListAllocator_include__
@@ -17,7 +17,7 @@
 
 // Format eines freien Blocks
 struct free_block {
-    unsigned int size;
+    uint64_t size;
     struct free_block *next;
 };
 
