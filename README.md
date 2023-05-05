@@ -12,8 +12,8 @@ Zunächst müssen die leeren Methoden in der Klasse `PIC` implementiert werden. 
 
 Anschliessend soll die Methode `plugin` in `Keyboard.cc` programmiert werden. Hier muss der Interrupt der Tastatur am PIC mit `pic.allow` freigeschaltet werden. Die Methode `trigger` kann vorerst leer bleiben, muss aber schon vorhanden sein.
 
-In `main` muss die ISR der Tastatur mit `kb.plugin` registriert werden und danach muessen die Interrupts an der CPU  mit `cpu.enable_int()` zugelassen werden.
-
+In `main` muss die ISR der Tastatur mit `kb.plugin` registriert werden und danach muessen die Interrupts an der CPU  mit `cpu.enable_int()` zugelassen werden. In der Vorgabe wird der PIC bereits durch Aufruf von `init_interrupts()` initialisiert.
+ 
 Wenn nun das System startet sollte bei jedem Drücken und Loslassen einer Taste eine Textmeldung von `int_disp` zu sehen sein. Dies funktioniert allerdings nu einige wenige Male. Wenn die Zeichen nicht vom Tastaturcontroller abgeholt werden, läuft der Tastaturpuffer irgendwann voll. Sobald der Puffer voll ist, sendet der Tastaturcontroller keine Interrupts mehr. 
 In folgenden Dateien muss Code implementiert werden: `devices/Keyboard.cc`, und `main.cc`,`kernel/interupts/PIC.cc` und `kernel/interrupts/IntDispatcher.cc`.
 
