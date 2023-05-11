@@ -5,12 +5,12 @@
  *---------------------------------------------------------------------------*
  * Beschreibung:    Einstieg in eine Anwendung.                              *
  *                                                                           *
- * Autor:           Michael Schoettner, HHU, 15.8.2016                       *
+ * Autor:           Michael Schoettner, HHU, 11.5.2023                       *
  *****************************************************************************/
 
 #include "kernel/Globals.h"
-#include "user/CoroutineDemo.h"
-#include "user/CoroutineLoop.h"
+#include "user/aufgabe4/CoroutineDemo.h"
+#include "user/aufgabe4/CoroutineLoop.h"
 
 
 // Stacks (koennen alternative auch per 'new' alloziert werden)
