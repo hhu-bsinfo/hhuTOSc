@@ -83,7 +83,9 @@ inline unsigned int PCSPK::readCounter() {
  *---------------------------------------------------------------------------*
  * Beschreibung:    Verzoegerung um X ms (in 1ms Schritten; Min. 1ms).       *
  *                  Da der Counter "nur" 16 Bit hat muss man evt. mehrmals   *
- *                  herunterzaehlen.                                         * 
+ *                  herunterzaehlen.                                         *
+ *                  Es empfiehlt sich Mode 2 "rate generator"                *
+ *                                                                           * 
  *                                                                           *
  * Parameter:       time (delay in ms)                                       *
  *****************************************************************************/
