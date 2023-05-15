@@ -11,11 +11,11 @@ FÜr diese Aufgabe sollte zuvor der Assembler-Crashkurs in `ASM-slides.pdf` gele
 ## A4.1: Koroutinen
 In dieser Aufgabe soll die Umschaltung zwischen Koroutinen in Assembler programmiert werden. Koroutinen sind eine Vorstufe zu Threads die später (siehe unten) zusätzlich eingeführt werden. 
 
-Sehen Sie sich zunächst die Inhalte der neuen Dateien in der Vorgabe im Ordner `kernel/corouts` an und implementieren Sie die beiden Assemblerfunktionen `coroutine_start` und `coroutine_switch` in `coroutine.asm`. Der Zustand (alle Register) einer Koroutine soll auf dem Stack gesichert werden. Das `rflags`-Register kann nicht direkt per move-Befehl zugegriffen werden, sondern nur mithilfe der Instruktionen `popf` und `pushf`. 
+Sehen Sie sich zunächst die Inhalte der neuen Dateien in der Vorgabe im Ordner `kernel/corouts` an und implementieren Sie die beiden Assemblerfunktionen `_coroutine_start` und `_coroutine_switch` in `Coroutine.asm`. Der Zustand (alle Register) einer Koroutine soll auf dem Stack gesichert werden. Das `rflags`-Register kann nicht direkt per move-Befehl zugegriffen werden, sondern nur mithilfe der Instruktionen `popf` und `pushf`. 
 
-Der Zeiger auf den letzten Stack-Eintrag soll in der Instanzvariablen `context` in der Klasse `Coroutine` gespeichert werden.
+Der Zeiger auf den letzten genutzren Stack-Eintrag soll in der Instanzvariablen `context` in der Klasse `Coroutine` gespeichert werden. Der Zeiger auf `context` wird beim Aufruf von `_coroutine_start` übergeben.
 
-Ergänzen Sie anschließend die leeren Methoden in `Coroutine.cc`. Die Verkettung der Koroutinen erfolgt durch Erben von der Klasse `lib/Chain`.
+Ergänzen Sie anschließend die leeren Methoden in `Coroutine.cc`. Die Verkettung der Koroutinen erfolgt durch `next` (wird von der Klasse `lib/Chain` geerbt).
 
 Schreiben Sie für Ihre Koroutinen-Implementierung folgendes Testprogramm. Im Verzeichnis
 `user` der Vorgabe finden Sie hierfür Dateien. Es sollen drei Koroutinen erzeugt und miteinander
@@ -45,13 +45,13 @@ In folgender Datei muss Code implementiert werden: `lib/Queue.cc`.
 Kopieren Sie das Unterverzeichnis `kernel/corouts` um nach `kernel/threads` und benennen Sie danach die Dateien im Verzeichnis `kernel/threads` wie folgt um. Passen Sie dann die Namen der Klassen, Konstruktoren, Methoden und Funktionen in den obigen Dateien entsprechend an und ersetzen den Namen *Coroutine* durch den Namen *Thread*.
 
 Umzukopieren sind folgende Dateien:
-- Coroutine.asm -> Thread.asm 
-- Coroutine.cc  -> Thread.cc
+- `Coroutine.asm` -> `Thread.asm` 
+- `Coroutine.cc`  -> `Thread.cc`
 
 Modifizieren Sie nun `Thread.cc` passend zur der Datei `Thread.h` in der Vorgabe. 
 - Die Methode `setNext` soll gelöscht werden.
-- Die Methode `switchToNext` soll durch `switchTo` (siehe Vorgabe `Thread.h`) ersetzt werden. Die Semantik bleibt gleich, aber die Threads sind nicht fest miteinander verkettet, wie die Koroutinen. Daher wird der nächste Thread in `next` als Parameter übergeben.
-- Im Konstruktor soll eine eindeutige Thread-ID vergeben werden, dies kann mithilfe einer globalen Variablen in `Thread.cc` realisiert werden. Zudem soll im Konstruktor der Stack (4 KB sind ausreichend) mithilfe ihrer Speicherverwaltung dynamisch angelegt werden.
+- Die Methode `switch2next` soll durch `switchTo` (siehe Vorgabe `Thread.h`) ersetzt werden. Die Semantik bleibt gleich, aber die Threads sind nicht fest miteinander verkettet, wie die Koroutinen. Daher wird der nächste Thread in `next` als Parameter übergeben.
+- Im Konstruktor soll eine eindeutige Thread-ID vergeben werden, dies kann mithilfe einer globalen Variablen in `Thread.cc` realisiert werden. Zudem soll im Konstruktor der Stack (4 KB sind ausreichend) mithilfe ihrer Speicherverwaltung dynamisch angelegt werden und im Destruktor gelöscht werden.
 
 *Hinweis: Diese Aufgabe kann nicht separat getestet werden.*
 
