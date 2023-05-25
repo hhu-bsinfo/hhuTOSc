@@ -15,7 +15,7 @@
  * Autor:           Olaf Spinczyk, TU Dortmund                               *
  *****************************************************************************/
 
-#include "kernel/PIC.h"
+#include "kernel/interrupts/PIC.h"
 #include "kernel/IOport.h"
 
 
