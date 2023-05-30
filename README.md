@@ -13,7 +13,7 @@ In folgenden Dateien muss Code implementiert werden: `devices/PIT.cc` und `main.
 
 
 ## A5.2: Umbau des Treibers für den PC-Lautsprecher
-Die `delay` Funktion im Treiber für den PC-Lautsprecher hat bisher den PIT direkt verwendet und soll nun die Systemzeit aus A5`1 nutzen. Hierzu soll eine Busy-Waiting-Schleife verwendet werden, welche stoppt, wenn die `systime` entsprechend der gewünschten Verzögerung fortgeschritten ist. Busy-Waiting ist nicht schön, aber durch das präemptive Multithreading akzeptabel. 
+Die `delay` Funktion im Treiber für den PC-Lautsprecher hat bisher den PIT direkt verwendet und soll nun die Systemzeit aus A5.1 nutzen. Hierzu soll eine Busy-Waiting-Schleife verwendet werden, welche stoppt, wenn die `systime` entsprechend der gewünschten Verzögerung fortgeschritten ist. Busy-Waiting ist nicht schön, aber durch das präemptive Multithreading akzeptabel. 
 
 Testen Sie den Umbau mit einer der Melodien.
 
