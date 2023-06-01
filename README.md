@@ -26,7 +26,9 @@ Zusätzliche müssen die Methoden des Schedulers mithilfe von Interrupt-Sperren 
 
 Zudem muss sichergestellt werden, dass der Scheduler fertig initialisiert ist, bevor das erste Mal `preempt`versucht umzuschalten. Dies kann am einfachsten mithilfe einer Instanzvariable `initialized` in `Scheduler.h`realisiert werden. `initialized` sollte erst auf `true` gesetzt werden, wenn der erste Thread läuft.
 
-In folgender Datei muss Code implementiert werden: `kernel/threads/Scheduler.cc`.
+Zuletzt muss in `kernel/threads/Thread.asm` in den beiden Assembler-Funktionen `_thread_start`und `_thread_switch` am Ende vor der `ret`-Instruktion ein `sti` eiongefuegt werden, damit die Interrupts wieder zugelassen werden. 
+
+In folgenden Dateien muss Code implementiert werden: `kernel/threads/Scheduler.cc`, `kernel/threads/Thread.asm` und `devices/PIT.cc`.
 
 
 ## A5.4: Testanwendung mit Multithreading
