@@ -1,6 +1,6 @@
 # Aufgabe 5: Präemptives Multithreading
 
-## Lernziele- Tieferes Verständnis von präemptiven Multitasking- CPU-Entzug mithilfe des PIT- Synchronisierung des Schedulers gegenüber dem PIT-Interrupt
+## Lernziele- Tieferes Verständnis von präemptiven Multitasking- CPU-Entzug mithilfe des PIT- Synchronisierung des Schedulers und des Allokators gegenüber dem PIT-Interrupt
 
 
 ## A5.1: Programmable Interval Timer (PIT)Der PIT wird ab sofort verwendet, um eine Systemzeit sowie ein erzwungenes Umschalten zwischen Threads zu realisieren. Die Systemzeit wird in der globalen Variable `systime` (in `Globals.cc`) gespeichert und diese wird bei jedem Interrupt für den PIT inkrementiert. Verwenden Sie hierfür im PIT den Channel 0 und Modus 3 und laden Sie den Zähler mit einem passenden Wert, sodass der PIT alle 10ms ein Interrupt ausgelöst. Jeder Interrupt verursacht also eine Inkrementierung und entspricht einem Tick (10ms). Somit zeigt `systime` an, wie viele Ticks seit dem Beginn der Zeiterfassungvergangen sind. 
@@ -19,7 +19,13 @@ Testen Sie den Umbau mit einer der Melodien.
 
 In folgender Datei muss Code implementiert werden: `devices/PCSPK.cc`.
 
-## A5.3 Threadumschaltung mithilfe des PIT
+
+## A5.3 Synchronisierung des Allokators gegenüber Interrupts
+Die Allokation und Freigabe von Speicher muss gegenüber Interrupts und preemptive Thread-Umschaltungen synchronisiert werden. Ansonsten kann es passieren, dass unser System hängt, wenn der der Allokator gesperrt ist und in einem Interrupt-Handler versucht wird Speicher zu allozieren (siehe auch Vorlesung).
+
+Aus diesem Grund müssen die Funktionen zum Allozieren und Freigeben von Speicher mit Interrupt-Sperren genschützt werden.
+
+## A5.4 Threadumschaltung mithilfe des PIT
 In der Vorgabe ist neu die Methode `preempt`in `Scheduler.cc`. Diese Methode soll bei jedem Tick aus der ISR vom PIT aufgerufen werden und eine erzwungene Threadumschaltung durchführen. Somit entspricht eine Zeitscheibe einem Tick. Das Umschalten kann mithilfe der Methode `dispatch`erfolgen, wie bisher bei `yield`. 
 
 Zusätzliche müssen die Methoden des Schedulers mithilfe von Interrupt-Sperren gegenüber dem PIT synchronisiert werden. Ansonsten kann es sein, dass die Ready-Queue kaputt geht, wenn in einem ungünstigen Augenblick `preempt`aufgerufen wird.
@@ -31,7 +37,7 @@ Zuletzt muss in `kernel/threads/Thread.asm` in den beiden Assembler-Funktionen `
 In folgenden Dateien muss Code implementiert werden: `kernel/threads/Scheduler.cc`, `kernel/threads/Thread.asm` und `devices/PIT.cc`.
 
 
-## A5.4: Testanwendung mit Multithreading
+## A5.5: Testanwendung mit Multithreading
 Testen Sie das präemptive Multitasking indem Sie eine kleine Demo-Anwendung schreiben in der ein Zähler-Thread läuft, welcher einen Zähler inkrementiert und an einer festen Position auf dem Bildschirm ausgibt. Zusätzlich soll noch ein zweiter Thread erzeugt werden der eine Melodie abspielt. Neben diesen beiden Threads soll zusätzlich der Fortschritt der Systemzeit im Interrupt ausgegeben werden, siehe nachstehende Abbildung.
 
 
