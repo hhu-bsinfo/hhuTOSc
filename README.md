@@ -23,7 +23,9 @@ verkettet werden. Jede Koroutine soll einen Zähler hochzählen und an einer fes
 
 In folgenden Dateien muss Code implementiert werden: `kernel/corouts/Coroutine.asm`, `kernel/corouts/Coroutine.cc`, `user/aufgabe4/CoroutineDemo.cc`, `user/aufgabe4/CoroutineLoop.cc` und `main.cc`
 
-Hinweis: Schauen Sie sich vor dem Programmieren der Assemblerfunktionen nochmals die Aufrufkonvention für die Parameterübergabe an.
+*Hinweise:* 
+- *Schauen Sie sich vor dem Programmieren der Assemblerfunktionen nochmals die Aufrufkonvention für die Parameterübergabe in* `ASM-slides.pdf` *an.* 
+- *Und es empfiehlt sich vorab das Umschalten der Stacks auf einem Papier aufzuzeichnen!*
 
 
 **Beispielausgaben der Koroutinen**
