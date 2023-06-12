@@ -12,6 +12,7 @@
 #define __Semaphore_include__
 
 
+#include "lib/Types.h"
 #include "lib/Queue.h"
 #include "lib/SpinLock.h"
 
@@ -25,11 +26,11 @@ private:
     Queue waitQueue;
     SpinLock lock;
 
-    int counter;
+    uint64_t counter;
 
 public:
     // Konstruktor: Initialisieren des Semaphorzaehlers
-    Semaphore (int c) : counter (c) {}
+    Semaphore (uint64_t c) : counter (c) {}
 
     // 'Passieren': Warten auf das Freiwerden eines kritischen Abschnitts.
     void p ();
