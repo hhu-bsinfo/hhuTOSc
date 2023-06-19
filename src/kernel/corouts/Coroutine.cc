@@ -109,11 +109,8 @@ void kickoff (Coroutine* object) {
  * Methode:         Coroutine::Coroutine                                     *
  *---------------------------------------------------------------------------*
  * Beschreibung:    Initialer Kontext einer Koroutine einrichten.            *
- *                                                                           *
- * Parameter:                                                                *
- *      stack       Stack für die neue Koroutine                             *
  *****************************************************************************/
-Coroutine::Coroutine (uint64_t *stack) {
+Coroutine::Coroutine () {
    stack = new uint64_t[1024];
    Coroutine_prepare_stack (&context, stack+1023, kickoff, this);
  }
