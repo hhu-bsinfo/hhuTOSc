@@ -1,4 +1,4 @@
-# Aufgabe 6: Semaphore
+# Aufgabe 6: Semaphore 2
 
 ## Lernziele
 1. Verstehen wie Semaphoren implementiert werden und damit Thread-Synchronisierung funktioniert
