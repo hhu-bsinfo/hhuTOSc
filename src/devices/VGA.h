@@ -11,7 +11,7 @@
  *                  Hier gibt es die Möglichkeit Text zeilenweise als Stream *
  *                  auszugeben, wie bei CGA sowie weitere Zeichenfunktionen. *
  *                                                                           *
- * Autor:           Michael Schoettner, HHU, 20.6.2023                       *
+ * Autor:           Michael Schoettner, HHU, 26.6.2023                       *
  *****************************************************************************/
 
 #ifndef __VGA_include__
@@ -43,7 +43,6 @@ public:
     uint32_t xres, yres;      // Aufloesung in Pixel
     uint32_t pitch;           // Anzahl bytes pro Zeile, meist gilt pitch = xres 
     uint32_t bpp;             // Farbtiefe (Bits per Pixel)
-    uint32_t mode; 			  // Zeichnenmodus: im sichtbaren = 1 oder unsichtbaren = 0 Puffer 
 
     uint32_t  t_xpos, t_ypos; // Text-Cursor-Position für Textausgabe mit 'gout'
     uint32_t  t_color;        // Farbe fuer Stream-Textausgabe

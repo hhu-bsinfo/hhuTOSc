@@ -5,12 +5,15 @@
  *---------------------------------------------------------------------------*
  * Beschreibung:    Graphicdemo.                                             *
  *                                                                           *
- * Autor:           Michael Schoettner, HHU, 15.2.2023                       *
+ * Autor:           Michael Schoettner, HHU, 26.6.2023                       *
  *****************************************************************************/
 
 #include "devices/VGA.h"
 #include "kernel/Globals.h"
 #include "user/aufgabe7/GraphicDemo.h"
+// Bitmap
+#include "bmp_hhu.cc"
+
 
 
 /*****************************************************************************
@@ -55,6 +58,8 @@ void GraphicDemo::run () {
     kout << "hhuTOS 0.7" << endl;
     kout << "==========" << endl << endl;
     kout << "Wir sind jetzt im Grafikmodus!" << endl;
+    
+    kout.drawBitmap(20,100,hhu.width,hhu.height, (unsigned char*) hhu.pixel_data, hhu.bytes_per_pixel);
     
     // selbst terminieren
     scheduler.exit ();

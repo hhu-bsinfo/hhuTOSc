@@ -1,6 +1,6 @@
 /*****************************************************************************
  *                                                                           *
- *                  VGA                                                      *
+ *                                  L F B G                                  *
  *                                                                           *
  *---------------------------------------------------------------------------*
  * Beschreibung:    Der Grafikmodus wird durch grub beim Booten einge-       *
@@ -11,13 +11,7 @@
  *                  Hier gibt es die Möglichkeit Text zeilenweise als Stream *
  *                  auszugeben, wie bei CGA sowie weitere Zeichenfunktionen. *
  *                                                                           *
- * Autor:           Michael Schoettner, HHU, 8.7.2022                        *
- *                                                                           *
- *                  Der Code fuer das Zeichnen der Linie ist von Alan Wolfe  *
- *         https://blog.demofox.org/2015/01/17/bresenhams-drawing-algorithms *
- *                                                                           *
- *                  Der Code fuer das Zeichnen der Kreise ist von L. Szary   *
- * https://stackoverflow.com/questions/1201200/fast-algorithm-for-drawing-filled-circles *
+ * Autor:           Michael Schoettner, HHU, 26.6.2023                       *
  *****************************************************************************/
 
 #include "devices/VGA.h"
